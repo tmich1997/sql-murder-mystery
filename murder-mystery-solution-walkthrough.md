@@ -4,7 +4,11 @@
 
 <div align="center">
     <h1>Welcome to SQL City</h1>
-    <h2>Where Queries Unveil the Mysteries </h2>
+    <h2>Where Queries Unveil the Mysteries</h2>
 </div>
+
+#### There has been a murder in SQL City, and it is up to you to solve it. All you have is your hours of watching Sherlock Holmes and SQL querying skills.
+
+#### I was introduced to SQL last year 
 
 
