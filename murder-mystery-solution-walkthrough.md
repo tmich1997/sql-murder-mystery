@@ -1,4 +1,4 @@
-<p style="text-align: center;"># Welcome to SQL City</p>
+<h1 style="text-align: center;">Welcome to SQL City</h1>
 
 # Welcome to SQL City
 
