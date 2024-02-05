@@ -7,8 +7,22 @@
     <h2>Where Queries Unveil the Mysteries</h2>
 </div>
 
-#### There has been a murder in SQL City, and it is up to you to solve it. All you have is your hours of watching Sherlock Holmes and SQL querying skills.
+#### There's been a murder in Savannah! Sorry, couldn't help myself with the Office reference. Let's start again. 
 
-#### I was introduced to SQL last year 
+#### There's been a murder in SQL City and it is up to you to solve it. All you have is your hours of watching Sherlock Holmes and SQL querying skills.
+
+#### I was introduced to SQL last year and one of the things that really got me to use SQL was solving a murder mystery. Even though I did it last year, my laptop was wiped and I lost the SQL murder mystery database. As an anlayst using SQL is the bare minimum and I wanted to start of my SQL advancement journey in 2024 with solving a murder mystery.
+
+## To Get Started
+**- The Murder Mystery Database**: This is an SQLite database that contains all the data you will need to work with. The database and other material that you need can be found on this [GitHub Repo](https://github.com/NUKnightLab/sql-mysteries/tree/master?tab=readme-ov-file).
+**- An SQLite Environment**: You can use DBeaver, which is an open source database tool that supports different flavour of SQL like SQLite. I personally ended up using SQLite Studio, as it natively supports SQLite and for this exercise thats all I need.
+
+## Who is the Murderer?
+#### The database has a total of 9-tables:
+**- crime_scene_report** 
+**- crime_scene_report** 
+**- crime_scene_report** 
+**- crime_scene_report** 
+
 
 
