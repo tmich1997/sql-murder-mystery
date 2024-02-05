@@ -19,10 +19,28 @@
 
 ## Who is the Murderer?
 #### The database has a total of 9-tables:
-**- crime_scene_report** 
-**- crime_scene_report** 
-**- crime_scene_report** 
-**- crime_scene_report** 
+- `crime_scene_report`
+- `drivers_license`
+- `facebook_event_checkin`
+- `get_fit_now_check_in`
+- `get_fit_now_member`
+- `income`
+- `interview`
+- `person`
+- `solution`
+
+#### You may or may not be using all 9-tables to find the solution. The `solution` table is purely for verification only to ensure that you got he correct answer.
+
+### Step 1: What happened?
+#### The initial info given is simply that: there has been a murder, it took place on the 15th January 2018 and it happened in SQL City. Therefore, I queried the `crime_scene_report` table. This is because it has fields that correspond directly with the initial info, and the query looks like this:
+````sql
+SELECT *
+from crime_scene_report
+where 
+    type = "murder" and 
+    date = "20180115" and 
+    city = "SQL City";
+````
 
 
 
