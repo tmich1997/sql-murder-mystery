@@ -7,18 +7,18 @@
     <h2>Where Queries Unveil the Mysteries</h2>
 </div>
 
-#### There's been a murder in Savannah! Sorry, couldn't help myself with the Office reference. Let's start again. 
+There's been a murder in Savannah! Sorry, couldn't help myself with the Office reference. Let's start again. 
 
-#### There's been a murder in SQL City and it is up to you to solve it. All you have is your hours of watching Sherlock Holmes and SQL querying skills.
+There's been a murder in SQL City and it is up to you to solve it. All you have is your hours of watching Sherlock Holmes and SQL querying skills.
 
-#### I was introduced to SQL last year and one of the things that really got me to use SQL was solving a murder mystery. Even though I did it last year, my laptop was wiped and I lost the SQL murder mystery database. As an anlayst using SQL is the bare minimum and I wanted to start of my SQL advancement journey in 2024 with solving a murder mystery.
+I was introduced to SQL last year and one of the things that really got me to use SQL was solving a murder mystery. Even though I did it last year, my laptop was wiped and I lost the SQL murder mystery database. As an anlayst using SQL is the bare minimum and I wanted to start of my SQL advancement journey in 2024 with solving a murder mystery.
 
 ## To Get Started
 - **The Murder Mystery Database:** This is an SQLite database that contains all the data you will need to work with. The database and other material that you need can be found on this [GitHub Repo](https://github.com/NUKnightLab/sql-mysteries/tree/master?tab=readme-ov-file).
 - **An SQLite Environment:** You can use DBeaver, which is an open source database tool that supports different flavour of SQL like SQLite. I personally ended up using SQLite Studio, as it natively supports SQLite and for this exercise thats all I need.
 
 ## Who is the Murderer?
-#### The database has a total of 9-tables:
+The database has a total of 9-tables:
 - `crime_scene_report`
 - `drivers_license`
 - `facebook_event_checkin`
@@ -29,18 +29,20 @@
 - `person`
 - `solution`
 
-#### You may or may not be using all 9-tables to find the solution. The `solution` table is purely for verification only to ensure that you got he correct answer.
+You may or may not be using all 9-tables to find the solution. The `solution` table is purely for verification only to ensure that you got the correct answer.
 
-### Step 1: What happened?
-#### The initial info given is simply that: there has been a murder, it took place on the 15th January 2018 and it happened in SQL City. Therefore, I queried the `crime_scene_report` table. This is because it has fields that correspond directly with the initial info, and the query looks like this:
+### What happened?
+#### Step 1: The initial inquiry
+The initial info given is simply that: there has been a murder, it took place on the 15th January 2018 and it happened in SQL City. Therefore, I queried the `crime_scene_report` table. This is because it has fields that correspond directly with the initial info, and the query looks like this:
 ````sql
 SELECT *
 from crime_scene_report
 where 
-    type = "murder" and 
+    type = "murder" and
     date = "20180115" and 
     city = "SQL City";
 ````
+Breaking it down to plain english, I am querying the `crime_scene_report` table **WHERE** the `type` of crime is `murder`, the `date` is 15th January 2018 formatted as `20180115` and the `city` is `SQL City`.
 
 
 
