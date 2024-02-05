@@ -15,7 +15,7 @@
 
 ## To Get Started
 **- The Murder Mystery Database**: This is an SQLite database that contains all the data you will need to work with. The database and other material that you need can be found on this [GitHub Repo](https://github.com/NUKnightLab/sql-mysteries/tree/master?tab=readme-ov-file).
-**- An SQLite Environment**: You can use DBeaver, which is an open source database tool that supports different flavour of SQL like SQLite. I personally ended up using SQLite Studio, as it natively supports SQLite and for this exercise thats all I need.
+**+ An SQLite Environment**: You can use DBeaver, which is an open source database tool that supports different flavour of SQL like SQLite. I personally ended up using SQLite Studio, as it natively supports SQLite and for this exercise thats all I need.
 
 ## Who is the Murderer?
 #### The database has a total of 9-tables:
