@@ -45,7 +45,7 @@ where
 ````
 Breaking it down to plain english, I am querying the `crime_scene_report` table **WHERE** the `type` of crime is `murder`, the `date` is 15th January 2018 formatted as `20180115` and the `city` is `SQL City`.
 The result of this query is:
-> [!Evidence]
+> [!Tip]
 > Security footage shows that there were 2 witnesses. The first witness lives at the last house on "Northwestern Dr". The second witness, named Annabel, lives somewhere on "Franklin Ave".
 
 From this we have clues to keep going, which are:
@@ -53,15 +53,48 @@ From this we have clues to keep going, which are:
 - Witness 1, lives at the last house on "Northwestern Dr"
 - Witness 2, has a name, Annabel, and lives somewhere on "Franklin Ave"
 
-#### Step 2: Witness Testimony
+#### Step 2: Witnesses
 With our two witnesses, we don't have a lot of details except for a name and an address. Therefore, to find more details I queried the `person` table for both witnesses, and the query looks like this:
 ````sql
+-- Witness #1
 select *
 from person
 where address_street_name like "Northwestern Dr"
 order by address_number;
 ````
-This was the query for witness 1. Breaking down the query into plain english means, querying the `person` table **WHERE** the `address_street_name` is **LIKE** `Northwestern Dr`. Finally, it was ordered by, **ORDER BY** based on the `address_number` (smallest to largest), this was beacuse we got a clue saying this person lived on the last house on the address. When we look at the last house number, we get a name, **Morthy Schapiro**
+````sql
+-- Witness #2
+select *
+from person
+where address_street_name like "Franklin%" and name like "Annabel%";
+````
+The query for **Witness #1** in plain english means, querying the `person` table **WHERE** the `address_street_name` is **LIKE** `Northwestern Dr`. Finally, it was ordered by, **ORDER BY** based on the `address_number` (smallest to largest), this was beacuse we got a clue saying this person lived on the last house on the address. When we look at the last house number, we get a name:
+> [!Tip]
+> Morty Schapiro
+> id: 14887
+> license_id: 118009
 
+The query for **Witness #2** in plain english means, querying the `person` table **WHERE** the `address_street_name` is **LIKE** `Franklin%` (the, %, indicates anything that comes after Franklin) **AND** her `name` was `Annabel%`. When we look at the result we get a match for:
+> [!Tip]
+> Annabel Miller
+> id: 16371
+> license_id: 490173
 
+Along with the two names, we also got their `id` and `license_id` which will become useful in the later sections.
 
+#### Step 3: Witness Testimony
+We have more clues regarding the witnesses. We have a table `interview` which we can query to find out more. The query looks like this:
+````sql
+select *
+from interview
+where person_id = 14887 or person_id = 16371;
+````
+The query in plain english means, querying the `interview` table **WHERE** the `person_id` (`person_id` in the `interview` table is the FK which can be linked to `id` in the `person` table) corresponds to the `id` of the two individuals. The **OR** word is being used as I want both results to come back.
+
+The testimony for **Witness #1** is:
+> [!Tip]
+> I heard a gunshot and then saw a man run out. 
+> He had a "Get Fit Now Gym" bag. 
+> The membership number on the bag started with "48Z". 
+> Only gold members have those bags. 
+> The man got into a car with a plate that included "H42W".
