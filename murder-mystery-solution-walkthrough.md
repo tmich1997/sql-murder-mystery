@@ -45,7 +45,9 @@ where
 ````
 Breaking it down to plain english, I am querying the `crime_scene_report` table **WHERE** the `type` of crime is `murder`, the `date` is 15th January 2018 formatted as `20180115` and the `city` is `SQL City`.
 The result of this query is:
-    <font color="blue">"Security footage shows that there were 2 witnesses. The first witness lives at the last house on "Northwestern Dr". The second witness, named Annabel, lives somewhere on "Franklin Ave".</font>
+> [!Tip]
+> Security footage shows that there were 2 witnesses. The first witness lives at the last house on "Northwestern Dr". The second witness, named Annabel, lives somewhere on "Franklin Ave".
+
 From this we have clues to keep going, which are:
 - 2 witnesses
 - Witness 1, lives at the last house on "Northwestern Dr"
