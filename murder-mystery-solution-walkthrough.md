@@ -112,7 +112,7 @@ From the testimony it is clear that, there are more clues related to **Witness #
 It is possible to take the testimony of **Wtiness #2** and get to the solution, however, I took clues from **Wtiness #1**.
 
 #### Step 4: Let's Get Fit
-A pivotal clue that we got was realted to the **Get Fit Now Gym**. Therefore, I queried the `get_fit_now_member` table, and it looked liket this:
+A pivotal clue that we got was realted to the **Get Fit Now Gym**. Therefore, I queried the `get_fit_now_member` table, and it looked like this:
 ````sql
 select * 
 from get_fit_now_member
@@ -125,3 +125,74 @@ In plain english the query means, in the table `get_fit_now_member` I want to fi
 > [!Tip]
 > Jeremy Bowers, person_id: 67318
 
+#### Step 5: Who Dunnit?
+We have two suspects now. The only way to see who it was is to check the license plate as we have a portion of it from testimony of **Wtiness #1**. The query looks like this:
+````sql
+select *
+from person
+join drivers_license on person.license_id = drivers_license.id
+where person.id = 28819 or person.id = 67318;
+````
+Deconstructing this we get, querying the `person` table which is joined using the **JOIN** clause on the `driving_license` table. It is joined with `id`, from the `driving_license` table (PK), to `license_id` in the `person` table (FK). Then I want to filter to only the `id` relevant to the two suspects. As a result, the murder is 🥁🥁🥁:
+> [!Tip]
+> Jeremy Bowers
+
+When the query is ran, it only comes back with one result. Even though we didn't use the license number, we can verify that his license plate does contain H42W. Furthemore, when you do the exercise there will be a step for verification where you insert the name of the murderer, and it look like this:
+
+````sql
+INSERT INTO solution VALUES (1, "Jeremy Bowers");
+
+SELECT value FROM solution;
+````
+Once you run both queries, and you get the correct name, you will get this message:
+**Congrats, you found the murderer! But wait, there's more... If you think you're up for a challenge, try querying the interview transcript of the murderer to find the real villain behind this crime. If you feel especially confident in your SQL skills, try to complete this final step with no more than 2 queries. Use this same INSERT statement with your new suspect to check your answer.**
+
+That's right, theres more. 
+
+Unfortunatley, there is no rest for the wicked!!
+
+Now, let's find the mastermind behind this crime.
+
+#### Step 6: Who Made the Offer that Jeremy couldn't refuse?
+From the last message it already told us what we need to do and that is to query the `interview` table, and it looks like this:
+
+````sql
+select *
+from interview
+where person_id = 67318;
+````
+In plain english, I queried the `interview` table with `person_id` of Jeremy Bowers. With this we got his testimony, which is:
+> [!Tip]
+> I was hired by a woman with a lot of money. 
+> I don't know her name but I know she's around 5'5" (65") or 5'7" (67"). 
+> She has red hair and she drives a Tesla Model S. 
+> I know that she attended the SQL Symphony Concert 3 times in December 2017.
+
+We have a lot of clues to find the mastermind. The query looks like this:
+````sql
+select *
+from drivers_license
+join person on drivers_license.id = person.license_id
+join facebook_event_checkin on person.id = facebook_event_checkin.person_id
+where gender = "female" and car_model = "Model S" and hair_color = "red";
+````
+This can be done with an additional query, however, I just wanted to challenge myself. Breaking it down, I queried the `drivers_license` table and joined on the `person` table. Furthermore, I also joined the `facebook_event_checkin` table on the `person` table as well. Then I filtered on the clues that we got like, the `gender`, `car_model` and `hair_color`. There was an additional clue about her going to the SQL Symphony Orchestra three times in December 2017, however, this clue not necessary for the query. This is because when the query is ran, it will give you the name of the mastermind with the dates of when she attended the orchestra. And it was three times in December 2017.
+
+The mastermind we have been looking for is 🥁🥁🥁:
+> [!Tip]
+> Miranda Priestly
+
+Once you query these statments:
+````sql
+INSERT INTO solution VALUES (1, "Miranda Priestly");
+
+SELECT value FROM solution;
+````
+You will be greeted with this:
+**Congrats, you found the brains behind the murder! Everyone in SQL City hails you as the greatest SQL detective of all time. Time to break out the champagne!**
+
+That's it. 
+
+Thank you for joining me on my journey in solving this and I hope you learned something from this.
+
+Thank you ❤️!!!!
