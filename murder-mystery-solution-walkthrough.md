@@ -70,14 +70,14 @@ where address_street_name like "Franklin%" and name like "Annabel%";
 ````
 The query for **Witness #1** in plain english means, querying the `person` table **WHERE** the `address_street_name` is **LIKE** `Northwestern Dr`. Finally, it was ordered by, **ORDER BY** based on the `address_number` (smallest to largest), this was beacuse we got a clue saying this person lived on the last house on the address. When we look at the last house number, we get a name:
 > [!Tip]
-> Morty Schapiro
-> id: 14887
+> Morty Schapiro,
+> id: 14887,
 > license_id: 118009
 
 The query for **Witness #2** in plain english means, querying the `person` table **WHERE** the `address_street_name` is **LIKE** `Franklin%` (the, %, indicates anything that comes after Franklin) **AND** her `name` was `Annabel%`. When we look at the result we get a match for:
 > [!Tip]
-> Annabel Miller
-> id: 16371
+> Annabel Miller,
+> id: 16371,
 > license_id: 490173
 
 Along with the two names, we also got their `id` and `license_id` which will become useful in the later sections.
@@ -98,3 +98,30 @@ The testimony for **Witness #1** is:
 > The membership number on the bag started with "48Z". 
 > Only gold members have those bags. 
 > The man got into a car with a plate that included "H42W".
+
+The testimony for **Witness #2** is:
+> [!Tip]
+> I saw the murder happen, and I recognized the killer from my gym when I was working out last week on January the 9th.
+
+From the testimony it is clear that, there are more clues related to **Witness #1**:
+- Had a "Get Fit Now Gym"
+- Details on the membership number
+- Deatils on the gym
+- Deatils about the car as well
+
+It is possible to take the testimony of **Wtiness #2** and get to the solution, however, I took clues from **Wtiness #1**.
+
+#### Step 4: Let's Get Fit
+A pivotal clue that we got was realted to the **Get Fit Now Gym**. Therefore, I queried the `get_fit_now_member` table, and it looked liket this:
+````sql
+select * 
+from get_fit_now_member
+where membership_status = "gold" and id like "%48Z%";
+````
+In plain english the query means, in the table `get_fit_now_member` I want to filter to `gold` for `membership_status` and `id` to be `%48Z%` (the % on either side means that I am not sure what is before or after it, and it will give anything that contains those characters). The result from this was, I was able to narrow the suspect list to two people which are:
+> [!Tip]
+> Joe Germuska, person_id: 28819
+
+> [!Tip]
+> Jeremy Bowers, person_id: 67318
+
