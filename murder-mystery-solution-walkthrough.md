@@ -32,10 +32,11 @@ The database has a total of 9-tables:
 You may or may not be using all 9-tables to find the solution. The `solution` table is purely for verification only to ensure that you got the correct answer.
 
 ### What happened?
-#### Step 1: The initial inquiry
+
+#### Step 1: The Initial Inquiry
 The initial info given is simply that: there has been a murder, it took place on the 15th January 2018 and it happened in SQL City. Therefore, I queried the `crime_scene_report` table. This is because it has fields that correspond directly with the initial info, and the query looks like this:
 ````sql
-SELECT *
+select *
 from crime_scene_report
 where 
     type = "murder" and
@@ -43,6 +44,22 @@ where
     city = "SQL City";
 ````
 Breaking it down to plain english, I am querying the `crime_scene_report` table **WHERE** the `type` of crime is `murder`, the `date` is 15th January 2018 formatted as `20180115` and the `city` is `SQL City`.
+The result of this query is:
+    <font color="aqua">"Security footage shows that there were 2 witnesses. The first witness lives at the last house on "Northwestern Dr". The second witness, named Annabel, lives somewhere on "Franklin Ave".</font>
+From this we have clues to keep going, which are:
+- 2 witnesses
+- Witness 1, lives at the last house on "Northwestern Dr"
+- Witness 2, has a name, Annabel, and lives somewhere on "Franklin Ave"
+
+#### Step 2: Witness Testimony
+With our two witnesses, we don't have a lot of details except for a name and an address. Therefore, to find more details I queried the `person` table for both witnesses, and the query looks like this:
+````sql
+select *
+from person
+where address_street_name like "Northwestern Dr"
+order by address_number;
+````
+This was the query for witness 1. Breaking down the query into plain english means, querying the `person` table **WHERE** the `address_street_name` is **LIKE** `Northwestern Dr`. Finally, it was ordered by, **ORDER BY** based on the `address_number` (smallest to largest), this was beacuse we got a clue saying this person lived on the last house on the address. When we look at the last house number, we get a name, **Morthy Schapiro**
 
 
 
